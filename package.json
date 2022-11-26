@@ -1,6 +1,6 @@
 {
   "name": "tsemplate",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "TypeScript Template Project for Averism",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -11,7 +11,9 @@
     "build:ts.d": "tsc -d --project tsconfig.build.json --outDir build --emitDeclarationOnly",
     "test": "mocha",
     "cov": "nyc mocha",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "prepare": "husky install",
+    "commit": "node scripts/precommit.js"
   },
   "author": "Averman",
   "license": "GPL-3.0",
@@ -21,7 +23,8 @@
     "mocha": "^8.1.3",
     "nyc": "^15.1.0",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "husky": "^8.0.0"
   },
   "nyc": {
     "require": [
