@@ -8,7 +8,7 @@ try {
 }
 lastVersion = lastVersion.split('.').map((v) => parseInt(v, 10));
 let changeLog = fs.readFileSync('CHANGELOG.md', 'utf8');
-let latestChangeLog = changeLog.split('---')[0].split('\n');
+let latestChangeLog = changeLog.split('\n---\n')[0].split('\n');
 let latestVersions = latestChangeLog.filter(x=>x?/\d+\.\d+\.\d+/.test(x):x);
 if(latestVersions.length === 0) {
     throw new Error('No new version found in CHANGELOG.md, please update it first');

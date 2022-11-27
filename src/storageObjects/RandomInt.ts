@@ -17,7 +17,7 @@ export default class RandomInt extends StorageObject {
         return `[RandomInt]${this.min},${this.max}`;
     }
     hashCode(): number {
-        return hashCode(this.toString());
+        return hashCode(this.toString()+'-'+this.lastValue);
     }
     getSeeds(): string[] {
         return this.seeds.map(seed => seed.startsWith('@')&&!seed.startsWith('@@')?this.storage.get(seed):seed);

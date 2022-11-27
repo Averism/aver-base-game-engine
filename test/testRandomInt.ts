@@ -5,15 +5,10 @@ import { ActionInterface } from '../src/Actions';
 import Storage from '../src/Storage';
 import StorageObject from '../src/storageObjects/StorageObject';
 import RandomInt from '../src/storageObjects/RandomInt';
+import { randomInt } from './commons';
 
 const actionInterfaces: ActionInterface[] = [
-    {
-        name: 'getRandomInt',
-        parameters: [
-        ],
-        result: (value: any): value is Number => typeof value === 'number',
-        resultTypeName: 'number'
-    }
+    randomInt.actionInterface,
 ]
 
 describe("RandomInt",()=>{
@@ -21,9 +16,7 @@ describe("RandomInt",()=>{
         StorageObject.library['randomInt'] = new RandomInt('0','1');
         let engine = new Engine(actionInterfaces);
         engine.storage.set('randomInt', '[randomInt]1,100,test');
-        engine.actionHandlers['getRandomInt'] = (v: Storage) => {
-            return v.get('randomInt');
-        }
+        engine.actionHandlers['getRandomInt'] = randomInt.actionHandler;
         let arr: number[] = [];
         for(let i = 0; i < 100; i++) {
             arr.push(<number>engine.action('getRandomInt'));
